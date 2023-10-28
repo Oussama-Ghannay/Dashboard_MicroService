@@ -15,6 +15,15 @@ export class EquipeServicesService {
   public urldetails= environment.defaultUrl+'/kaddem/DetailEquipeC'
 
 
+  // muscic
+  public urlmusic= environment.defaultUrl+'api/music'
+
+  public urltypes= environment.defaultUrl+'api/type'
+
+
+
+
+
 
   constructor(private http :HttpClient) { }
 
@@ -32,6 +41,34 @@ getEquipe(){
 
 }
 
+/////////////////////get types
+
+getTypes(){
+  return this.http.get<any>(`${this.urltypes}/allTypes`);
+
+}
+
+postType(data : any){
+  return this.http.post<any>(`${this.urltypes}/addType`,data);
+
+}
+
+
+updateType(data:any,id:number){
+
+  return this.http.put<any>(`${this.urltypes}/${id}`,data)
+}
+
+
+deleteType(id:number){
+  return this.http.delete<any>(`${this.urltypes}/${id}`)
+}
+
+
+  
+
+
+/////////////////////////////////////////////////////////////
 
 
 

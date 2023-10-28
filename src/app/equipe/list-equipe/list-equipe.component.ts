@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit,ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit,Type,ViewChild } from '@angular/core';
 
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogEquipeComponent } from '../dialog-equipe/dialog-equipe.component';
@@ -10,6 +10,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Equipe } from '../models/Equipe';
+
+import { TypeMusic } from '../models/Type';
 
 
 
@@ -36,7 +38,13 @@ export class ListEquipeComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['detail','logo','nomEquipe','mail','niveau','nbrDesMembresMax','actions'];
+  // displayedColumns: string[] = ['detail','logo','nomEquipe','mail','niveau','nbrDesMembresMax','actions'];
+
+  displayedColumns: string[] = ['detail','name','actions'];
+
+
+
+
   dataSource!: MatTableDataSource<any>;
   
   ////
@@ -44,9 +52,11 @@ export class ListEquipeComponent implements OnInit {
 
   public equipes!: Equipe[];
 
+  public types!: TypeMusic[];
+
   ////xsl
 
-  fileName= 'ExcelSheetEquipe.xlsx';
+  fileName= 'ExcelSheetType.xlsx';
 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -61,7 +71,7 @@ export class ListEquipeComponent implements OnInit {
       
     }).afterClosed().subscribe(val=>{
       if(val==='ajout'){
-        this.getAllEquipes()
+        this.getAllTypes()
       }
     });
   }
@@ -69,8 +79,8 @@ export class ListEquipeComponent implements OnInit {
 
   
   ngOnInit(): void {
-    this.getAllEquipes()
-    console.log(this.getAllEquipes())
+    this.getAllTypes()
+    console.log("hhhhhhhhhhhhhhh>",this.getAllTypes())
     
 
 
@@ -82,11 +92,11 @@ export class ListEquipeComponent implements OnInit {
 
 
 
-  getAllEquipes(){
-    this.equipeService.getEquipe()
+  getAllTypes(){
+    this.equipeService.getTypes()
     .subscribe({
-      next: (data:Equipe[])=>{
-        this.equipes=data
+      next: (data:TypeMusic[])=>{
+        this.types=data
 
    
         console.log("heeeelooo liste equipe");
@@ -130,7 +140,7 @@ export class ListEquipeComponent implements OnInit {
       
     }).afterClosed().subscribe(val=>{
       if(val==='update'){
-        this.getAllEquipes()
+        this.getAllTypes()
       }
     });;
   }
@@ -141,15 +151,15 @@ export class ListEquipeComponent implements OnInit {
 
   deleteEquipe(id:number){
 
-    this.equipeService.deleteEquipe(id)
+    this.equipeService.deleteType(id)
     .subscribe({
       next: (res)=>{
-        alert("equipe bien supprimer")
-        this.getAllEquipes()
+        alert("type bien supprimé")
+        this.getAllTypes()
 
       },
       error:()=>{
-        alert("erreur de suppression")
+        alert("type supprimé")
       }
 
 
@@ -167,7 +177,7 @@ export class ListEquipeComponent implements OnInit {
  
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Liste des Equipes');
+    XLSX.utils.book_append_sheet(wb, ws, 'Liste types');
  
     /* save to file */  
     XLSX.writeFile(wb, this.fileName);
