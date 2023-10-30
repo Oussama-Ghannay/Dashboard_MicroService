@@ -1,0 +1,7 @@
+<form (ngSubmit)="addBlog()">
+    <input type="text" name="title" [(ngModel)]="formData.title" placeholder="Title" required><br>
+    <textarea name="description" [(ngModel)]="formData.description" placeholder="Description" required></textarea><br>
+    <input type="file" (change)="handleFileInput($event)" accept="image/*" required><br>
+ <button type="submit">Add Blog Post</button>
+ </form>
+  

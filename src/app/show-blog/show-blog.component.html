@@ -1,0 +1,18 @@
+<div>
+    <h2>{{ blogData.title }}</h2>
+    <p>{{ blogData.description }}</p>
+    <img [src]="'assets/images/' + blogData.image" alt="Blog Image" [style.width.px]="300" [style.height.px]="200" [style.border]="'1px solid #ccc'" >
+    <ul>
+        <li *ngFor="let comment of blogData.comments">
+          <span>{{ comment.content }}</span>
+          <button (click)="deleteComment(comment.id)">Delete</button>
+        </li>
+      </ul>
+
+
+      <form (ngSubmit)="addComment()" #commentForm="ngForm">
+        <input type="text" name="newComment" [(ngModel)]="newCommentContent" required>
+        <button type="submit">Add Comment</button>
+      </form>
+  </div>
+  

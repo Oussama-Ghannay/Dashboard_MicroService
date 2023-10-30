@@ -5,7 +5,8 @@ import { EquipeRoutingModule } from './equipe-routing.module';
 import { ListEquipeComponent } from './list-equipe/list-equipe.component';
 
 import {MatButtonModule} from '@angular/material/button';
-import {MatTableModule} from '@angular/material/table';
+ import {MatTableModule} from '@angular/material/table';
+//import { MatTableModule } from '@angular/material';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogEquipeComponent } from './dialog-equipe/dialog-equipe.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EquipeServicesService } from './services/equipe-services.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+// import {MatIconModule} from '@angular/material/icon';
 import {MatIconModule} from '@angular/material/icon';
 import { DetailsEquipeComponent } from './details-equipe/details-equipe.component'
 
@@ -53,10 +55,15 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
     MatSortModule,
     MatIconModule,
     QRCodeModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
 
+  ],
+  exports: [
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatIconModule,
 
-    
   ],
   providers: [EquipeServicesService,HttpService],
 

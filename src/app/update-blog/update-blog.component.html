@@ -1,0 +1,6 @@
+<form (ngSubmit)="updateBlog()">
+    <input type="text" name="title" [(ngModel)]="blogData.title" required><br>
+    <textarea name="description" [(ngModel)]="blogData.description" required></textarea><br>
+    <!-- Other input fields for editing the blog post -->
+    <button type="submit">Update Blog Post</button>
+  </form>

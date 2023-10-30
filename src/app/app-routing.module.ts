@@ -6,11 +6,18 @@ import {CommonModule} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 import {AppComponent} from "./app.component";
+import { BlogComponent } from './blog/blog.component';
+import { AddBlogComponent } from './add-blog/add-blog.component';
+import { UpdateBlogComponent } from './update-blog/update-blog.component';
+import { ShowBlogComponent } from './show-blog/show-blog.component';
 
 
 
 const routes: Routes = [
-  
+  { path: 'blog', component: BlogComponent },
+  { path: 'addblog', component: AddBlogComponent },
+  { path: 'blog/edit/:id', component: UpdateBlogComponent },
+  { path: 'blog/:id', component: ShowBlogComponent },
   {path: 'equipe', loadChildren: () => import('./equipe/equipe.module').then(e =>e.EquipeModule )},
   {path:'experience',  loadChildren:() =>import('./experience/experience.module').then(m=>m.ExperienceModule)},
   
