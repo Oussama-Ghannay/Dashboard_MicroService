@@ -1,0 +1,84 @@
+<h1>Evenement</h1>
+
+<div>
+  <form [formGroup]="evenementForm">
+
+    <div>
+      <label for="nom">Nom</label>
+      <input id="nom" formControlName="nom" type="text" placeholder="nom" />
+
+      <div *ngIf="evenementForm.controls['nom'].touched && evenementForm.controls['nom'].hasError('required')">
+        Nom requis
+      </div>
+
+      <div *ngIf="evenementForm.controls['nom'].touched && evenementForm.controls['nom'].hasError('pattern')">
+        Le nom doit contenir uniquement des lettres
+      </div>
+
+      <div *ngIf="evenementForm.controls['nom'].touched && evenementForm.controls['nom'].hasError('minlength')">
+        Le nom doit contenir au moins 3 lettres
+      </div>
+    </div>
+
+    <div>
+      <label for="description">Description</label>
+      <input id="description" formControlName="description" type="text" placeholder="description" />
+
+      <div *ngIf="evenementForm.controls['description'].touched && evenementForm.controls['description'].hasError('required')">
+        Description requise
+      </div>
+
+      <div *ngIf="evenementForm.controls['description'].touched && evenementForm.controls['description'].hasError('pattern')">
+        La description doit contenir uniquement des lettres
+      </div>
+
+      <div *ngIf="evenementForm.controls['description'].touched && evenementForm.controls['description'].hasError('minlength')">
+        La description doit contenir au moins 3 lettres
+      </div>
+    </div>
+
+    <div>
+      <label for="date">Date</label>
+      <input id="date" formControlName="date" type="date" placeholder="date" />
+    </div>
+
+    <div>
+      <label for="lieu">Lieu</label>
+      <input id="lieu" formControlName="lieu" type="text" placeholder="lieu" />
+
+      <div *ngIf="evenementForm.controls['lieu'].touched && evenementForm.controls['lieu'].hasError('required')">
+        Lieu requis
+      </div>
+
+      <div *ngIf="evenementForm.controls['lieu'].touched && evenementForm.controls['lieu'].hasError('pattern')">
+        Le lieu doit contenir uniquement des lettres
+      </div>
+
+      <div *ngIf="evenementForm.controls['lieu'].touched && evenementForm.controls['lieu'].hasError('minlength')">
+        Le lieu doit contenir au moins 3 lettres
+      </div>
+    </div>
+
+    <div>
+      <label for="artiste">Artiste</label>
+      <input id="artiste" formControlName="artiste" type="text" placeholder="artiste" />
+
+      <div *ngIf="evenementForm.controls['artiste'].touched && evenementForm.controls['artiste'].hasError('required')">
+        Artiste requis
+      </div>
+
+      <div *ngIf="evenementForm.controls['artiste'].touched && evenementForm.controls['artiste'].hasError('pattern')">
+        L'artiste doit contenir uniquement des lettres
+      </div>
+
+      <div *ngIf="evenementForm.controls['artiste'].touched && evenementForm.controls['artiste'].hasError('minlength')">
+        L'artiste doit contenir au moins 3 lettres
+      </div>
+    </div>
+
+    <div>
+      <button type="button" (click)="addEvenement()" [disabled]="!evenementForm.valid">Ajouter</button>
+    </div>
+
+  </form>
+</div>

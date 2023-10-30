@@ -1,0 +1,51 @@
+<h1>Ticket</h1>
+
+<div>
+  <form [formGroup]="ticketForm">
+
+    <div>
+      <label for="prix">prix</label>
+      <input id="prix" formControlName="prix" type="text" placeholder="prix" />
+
+      <div *ngIf="ticketForm.controls['prix'].touched && ticketForm.controls['prix'].hasError('required')">
+        prix requis
+      </div>
+
+      <div *ngIf="ticketForm.controls['prix'].touched && ticketForm.controls['prix'].hasError('pattern')">
+        Le prix doit contenir uniquement des lettres
+      </div>
+
+      <div *ngIf="ticketForm.controls['prix'].touched && ticketForm.controls['prix'].hasError('minlength')">
+        Le prix doit contenir au moins 3 lettres
+      </div>
+    </div>
+
+    <div>
+      <label for="dateAchat">dateAchat</label>
+      <input id="dateAchat" formControlName="dateAchat" type="text" placeholder="dateAchat" />
+
+      <div *ngIf="ticketForm.controls['dateAchat'].touched && ticketForm.controls['dateAchat'].hasError('required')">
+        dateAchat requise
+      </div>
+
+      <div *ngIf="ticketForm.controls['dateAchat'].touched && ticketForm.controls['dateAchat'].hasError('pattern')">
+        La dateAchat doit contenir uniquement des lettres
+      </div>
+
+      <div *ngIf="ticketForm.controls['dateAchat'].touched && ticketForm.controls['description'].hasError('minlength')">
+        La dateAchat doit contenir au moins 3 lettres
+      </div>
+    </div>
+
+   
+
+    
+
+    
+
+    <div>
+      <button type="button" (click)="addTicket()" [disabled]="!ticketForm.valid">Ajouter</button>
+    </div>
+
+  </form>
+</div>

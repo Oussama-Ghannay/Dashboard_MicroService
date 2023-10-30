@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
- 
+import { TicketModule } from './ticket/ticket.module'
+import { EvenementModule} from './evenement/evenement.module'
 import { GestionEtudiantModule } from './gestion-etudiant/gestion-etudiant.module';
 import { GestionContratModule } from './gestion-contrat/gestion-contrat.module';
 
@@ -46,6 +47,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AppRoutingModule,
     ExperienceModule,
     HttpClientModule,
+    TicketModule,
+    EvenementModule,
     GestionEtudiantModule,
     GestionContratModule,
     FormsModule,
