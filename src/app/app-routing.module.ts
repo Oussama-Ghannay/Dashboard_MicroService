@@ -28,6 +28,11 @@ const routes: Routes = [
   {path: 'music', loadChildren: () => import('./music/music.module').then(m => m.MusicModule)},
   
   {path:'experience',  loadChildren:() =>import('./experience/experience.module').then(m=>m.ExperienceModule)},
+  {path:'evenement',  loadChildren:() =>import('./evenement/evenement.module').then(m=>m.EvenementModule)
+
+},
+{path:'ticket',  loadChildren:() =>import('./ticket/ticket.module').then(m=>m.TicketModule)},
+
   
 
 
