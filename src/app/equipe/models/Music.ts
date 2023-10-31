@@ -1,5 +1,5 @@
 
-import { Type } from "./Type";
+import { TypeMusic } from "./Type";
 
 
 export class Music {
@@ -8,6 +8,6 @@ export class Music {
     title!: string;
     album!: string;
     audio!:  string;
-    type!: Type;
+    type!: TypeMusic;
     
  }

@@ -14,9 +14,9 @@ export class MusicService {
 
 
     // muscic
-    public urlmusic= environment.defaultUrl+'api/music'
+    public urlmusic= environment.defaultUrl+'service2/api/musicMS/music'
 
-    public urltypes= environment.defaultUrl+'api/type'
+    public urltypes= environment.defaultUrl+'service2/api/musicMS/type'
 
   constructor(private http :HttpClient) { }
 
