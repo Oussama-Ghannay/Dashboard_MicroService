@@ -10,6 +10,9 @@ import { BlogComponent } from './blog/blog.component';
 import { AddBlogComponent } from './add-blog/add-blog.component';
 import { UpdateBlogComponent } from './update-blog/update-blog.component';
 import { ShowBlogComponent } from './show-blog/show-blog.component';
+import { LoginuSERComponent } from './loginu-ser/loginu-ser.component';
+import { RegisterComponent } from './register/register.component';
+
 
 
 
@@ -18,6 +21,8 @@ const routes: Routes = [
   { path: 'addblog', component: AddBlogComponent },
   { path: 'blog/edit/:id', component: UpdateBlogComponent },
   { path: 'blog/:id', component: ShowBlogComponent },
+  { path: 'login', component: LoginuSERComponent },
+  { path: 'register', component: RegisterComponent },
   {path: 'equipe', loadChildren: () => import('./equipe/equipe.module').then(e =>e.EquipeModule )},
   {path:'experience',  loadChildren:() =>import('./experience/experience.module').then(m=>m.ExperienceModule)},
   

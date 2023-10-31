@@ -31,6 +31,9 @@ import { MatTable, MatTableModule } from '@angular/material/table';
 import { AddBlogComponent } from './add-blog/add-blog.component';
 import { UpdateBlogComponent } from './update-blog/update-blog.component';
 import { ShowBlogComponent } from './show-blog/show-blog.component';
+ 
+import { LoginuSERComponent } from './loginu-ser/loginu-ser.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -46,7 +49,10 @@ import { ShowBlogComponent } from './show-blog/show-blog.component';
     BlogComponent,
     AddBlogComponent,
     UpdateBlogComponent,
-    ShowBlogComponent
+    ShowBlogComponent,
+ 
+    LoginuSERComponent,
+       RegisterComponent
     
 
 
