@@ -4,6 +4,7 @@ import { EquipeServicesService } from '../services/equipe-services.service';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Equipe } from '../models/Equipe';
 import { HttpService } from '../services/http.service';
+import { TypeMusic } from '../models/Type';
 
 
 @Component({
@@ -13,12 +14,14 @@ import { HttpService } from '../services/http.service';
 })
 export class DialogEquipeComponent implements OnInit {
 
-  equipenew!: Equipe;
+  // equipenew!: Equipe;
+
+  typenew!: TypeMusic;
 
 
-   ListNveau =["JUNIOR","SENIOR","EXPERT"]
 
-   equipeForm !: FormGroup
+   typeForm !: FormGroup
+
    actionButton:string="Ajouter"
 
   constructor(private formBuilder : FormBuilder , private equipeService:EquipeServicesService,
@@ -27,60 +30,34 @@ export class DialogEquipeComponent implements OnInit {
 
 
 
-    taswira! : string;
+    
 
   ngOnInit(): void {
 
 
-    this.equipenew =  new Equipe();
+    this.typenew =  new TypeMusic();
 
 
 
 
 
-    this.equipeForm=this.formBuilder.group({
+    this.typeForm=this.formBuilder.group({
 
-      nomEquipe :['',[Validators.required,
+      name :['',[Validators.required,
                       Validators.pattern('[a-zA-Z ]*'),
                       Validators.minLength(3)] ],
-
-      niveau :['',Validators.required ],
-
-      nbrDesMembresMax :['',[Validators.required,
-                             Validators.max(20),
-                             Validators.min(2),
-                             Validators.pattern("^[0-9]*$")] ],
-
-
-
-      mail :['',[Validators.required,
-                 Validators.email
-                                
-           ] ],
-
-
-
-
-
-
-      logo :['',Validators.required ],
-
-
-
-  
-
     })
 
 
     console.log(this.editdata)
     
     if(this.editdata){
+
       this.actionButton="Modifier"
-      this.equipeForm.controls['nomEquipe'].setValue(this.editdata.nomEquipe)
-      this.equipeForm.controls['niveau'].setValue(this.editdata.niveau)
-      this.equipeForm.controls['nbrDesMembresMax'].setValue(this.editdata.nbrDesMembresMax)
-      this.equipeForm.controls['mail'].setValue(this.editdata.mail)
-      this.equipeForm.controls['logo'].setValue(this.editdata.logo)
+
+      this.typeForm.controls['name'].setValue(this.editdata.name)
+
+    
     }
 
 
@@ -90,15 +67,16 @@ export class DialogEquipeComponent implements OnInit {
 
 
 
-  addEquipe(){
+  addType(){
 
-    console.log(this.equipeForm.value)
+    console.log(this.typeForm.value)
 
     if(!this.editdata){
-      if(this.equipeForm.valid){
+
+      if(this.typeForm.valid){
 
 
-       console.log("ggggg"+this.equipeForm.controls['mail'].value);
+      //  console.log("ggggg"+this.typeForm.controls['mail'].value);
 
 
        // this.equipeForm..="fffffffff";
@@ -110,36 +88,14 @@ export class DialogEquipeComponent implements OnInit {
      // this.equipeForm.controls['logo'].setValue("kkkkkkkkkkk")
 
 
-        this.equipeService.postEquipe(this.equipeForm.value)
+        this.equipeService.postType(this.typeForm.value)
         .subscribe({
           next: (res)=>{
-            alert("equipe ajoute avec succes");
+            alert("type ajoute avec succes");
             this.matdialoRef.close("ajout");
 
 
-/*--------------------send email--------------------------*/
-let maile=this.equipeForm.controls['mail'].value;
-console.log(">>>>>>>> "+maile);
-
-
- let user = {
-  name: "bbbbb",
-  email: this.equipeForm.controls['mail'].value,
-  sujet: "Bienvnu , Une equipe ete crée par cette email",
-  html : "Bienvnu , Une equipe ete crée par cette email"
-}
-this.http.sendEmail("http://localhost:3000/sendmail", user).subscribe(
-  data => {
-    let res:any = data; 
-    console.log(
-      `👏 > 👏 > 👏 > 👏 ${user.name} is successfully register and mail has been sent and the message id is ${res.messageId}`
-    );
-  },
-
-);
-
- /*-----------------//---send email--------------------------*/
-      this.equipeForm.reset();
+      this.typeForm.reset();
 
 
 
@@ -154,19 +110,20 @@ this.http.sendEmail("http://localhost:3000/sendmail", user).subscribe(
         })
       }
     }else{
-      this.updateEquipe()
+      this.updateType()
     }
 
   }
 
 
-  updateEquipe(){
 
-    this.equipeService.updateEquipe(this.equipeForm.value,this.editdata.idEquipe)
+  updateType(){
+
+    this.equipeService.updateType(this.typeForm.value,this.editdata.id)
     .subscribe({
       next:(r)=>{
-        alert("equipe bien modifiée")
-        this.equipeForm.reset()
+        alert("type bien modifiée")
+        this.typeForm.reset()
         this.matdialoRef.close('update')
       },
       error:()=>{

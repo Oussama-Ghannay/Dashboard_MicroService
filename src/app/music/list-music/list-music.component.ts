@@ -1,17 +1,15 @@
-import { Component, ElementRef, OnInit,Type,ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit,ViewChild } from '@angular/core';
 
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { DialogEquipeComponent } from '../dialog-equipe/dialog-equipe.component';
-import { EquipeServicesService } from '../services/equipe-services.service';
+import { DialogMusicComponent } from '../dialog-music/dialog-music.component';
+import { MusicService } from '../services/music.service';
 
 
 
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { Equipe } from '../models/Equipe';
-
-import { TypeMusic } from '../models/Type';
+import { Music } from '../models/Music';
 
 
 
@@ -30,48 +28,42 @@ import html2canvas from 'html2canvas';
 
 
 @Component({
-  selector: 'app-list-equipe',
-  templateUrl: './list-equipe.component.html',
-  styleUrls: ['./list-equipe.component.css']
+  selector: 'app-list-music',
+  templateUrl: './list-music.component.html',
+  styleUrls: ['./list-music.component.css']
 })
-export class ListEquipeComponent implements OnInit {
+export class ListMusicComponent implements OnInit {
 
+ 
 
-
-  // displayedColumns: string[] = ['detail','logo','nomEquipe','mail','niveau','nbrDesMembresMax','actions'];
-
-  displayedColumns: string[] = ['detail','name','actions'];
-
-
-
-
+  displayedColumns: string[] = ['detail','audio','title','album','actions'];
   dataSource!: MatTableDataSource<any>;
   
   ////
   haveDetails!:number;
 
-  public equipes!: Equipe[];
+  // public equipes!: Equipe[];
 
-  public types!: TypeMusic[];
+  public musics!: Music[];
 
   ////xsl
 
-  fileName= 'ExcelSheetType.xlsx';
+  fileName= 'ExcelSheetEquipe.xlsx';
 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(public dialog: MatDialog,
-              private equipeService:EquipeServicesService) {}
+              private musicService:MusicService) {}
 
   openDialog() {
-    this.dialog.open(DialogEquipeComponent, {
+    this.dialog.open(DialogMusicComponent, {
         width:'30%'
       
     }).afterClosed().subscribe(val=>{
       if(val==='ajout'){
-        this.getAllTypes()
+        this.getAllMusics()
       }
     });
   }
@@ -79,8 +71,8 @@ export class ListEquipeComponent implements OnInit {
 
   
   ngOnInit(): void {
-    this.getAllTypes()
-    console.log("hhhhhhhhhhhhhhh>",this.getAllTypes())
+    this.getAllMusics()
+    console.log(this.getAllMusics())
     
 
 
@@ -92,11 +84,11 @@ export class ListEquipeComponent implements OnInit {
 
 
 
-  getAllTypes(){
-    this.equipeService.getTypes()
+  getAllMusics(){
+    this.musicService.getMusics()
     .subscribe({
-      next: (data:TypeMusic[])=>{
-        this.types=data
+      next: (data:Music[])=>{
+        this.musics=data
 
    
         console.log("heeeelooo liste equipe");
@@ -134,13 +126,13 @@ export class ListEquipeComponent implements OnInit {
 
 
   editEquipe(row :any) {
-    this.dialog.open(DialogEquipeComponent, {
+    this.dialog.open(DialogMusicComponent, {
         width:'30%',
         data:row
       
     }).afterClosed().subscribe(val=>{
       if(val==='update'){
-        this.getAllTypes()
+        this.getAllMusics()
       }
     });;
   }
@@ -151,15 +143,15 @@ export class ListEquipeComponent implements OnInit {
 
   deleteEquipe(id:number){
 
-    this.equipeService.deleteType(id)
+    this.musicService.deleteMusic(id)
     .subscribe({
       next: (res)=>{
-        alert("type bien supprimé")
-        this.getAllTypes()
+        alert("equipe bien supprimer")
+        this.getAllMusics()
 
       },
       error:()=>{
-        alert("type supprimé")
+        alert("erreur de suppression")
       }
 
 
@@ -177,7 +169,7 @@ export class ListEquipeComponent implements OnInit {
  
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Liste types');
+    XLSX.utils.book_append_sheet(wb, ws, 'Liste des Equipes');
  
     /* save to file */  
     XLSX.writeFile(wb, this.fileName);
@@ -216,5 +208,5 @@ export class ListEquipeComponent implements OnInit {
 
     
 
-}
 
+}

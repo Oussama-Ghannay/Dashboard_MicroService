@@ -4,7 +4,16 @@
 
 export const environment = {
   production: false,
-  defaultUrl:'http://localhost:8189'
+  // defaultUrl:'http://localhost:8189'
+
+  // defaultUrl:'http://localhost:8085/'
+  
+  defaultUrl:'http://192.168.33.1:9999/'
+
+
+ 
+
+
 };
 
 
