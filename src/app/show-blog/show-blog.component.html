@@ -1,3 +1,6 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
 <div>
     <h2>{{ blogData.title }}</h2>
     <p>{{ blogData.description }}</p>
@@ -5,14 +8,22 @@
     <ul>
         <li *ngFor="let comment of blogData.comments">
           <span>{{ comment.content }}</span>
-          <button (click)="deleteComment(comment.id)">Delete</button>
+          <button type="button" [ngClass]="['btn', 'btn-danger']" data-toggle="modal" data-target="#danger-alert-modal" style="margin-right: 20px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;"(click)="deleteComment(comment.id)">
+            <i class="fa fa-trash-o" style="font-size:18px"></i>  
+        </button> 
         </li>
       </ul>
-
+     
 
       <form (ngSubmit)="addComment()" #commentForm="ngForm">
-        <input type="text" name="newComment" [(ngModel)]="newCommentContent" required>
-        <button type="submit">Add Comment</button>
+        <div class="form-group">
+        <input type="text" name="newComment" class="form-control" [(ngModel)]="newCommentContent" required>
+      </div>
+        <button type="submit" class="btn waves-effect waves-light btn-outline-success">Add Comment</button>
       </form>
+
+
+       
+
   </div>
   

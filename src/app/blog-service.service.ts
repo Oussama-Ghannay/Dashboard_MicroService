@@ -35,7 +35,7 @@ export class BlogServiceService {
       return this.http.put<any>(`${this.apiUrl}`, updatedBlogData);
     }
 
-    private apiid = 'http://localhost:8081/service1/api/blog/get';
+    private apiid = 'http://localhost:8083/api/blog/get';
     getBlogid(blogId: number): Observable<any> {
       return this.http.get<any>(`${this.apiid}/${blogId}`);
     }

@@ -17,7 +17,7 @@ export class UpdateBlogComponent implements OnInit {
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
     this.blogId = idParam ? +idParam : 0;
-    this.blogData = { title: '', description: '' };
+    this.blogData = { title: '', description: '',image:'' };
     if (idParam) {
         this.getBlogData(this.blogId);
     }
@@ -42,6 +42,13 @@ export class UpdateBlogComponent implements OnInit {
         // Handle error, e.g., show error message
       }
     });
+  }
+  handleFileInput(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const file = (inputElement.files as FileList)[0];
+    if (file) {
+      this.blogData.image = file.name;
+    }
   }
 
 }
