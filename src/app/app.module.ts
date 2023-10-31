@@ -25,6 +25,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { BlogComponent } from './blog/blog.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTable, MatTableModule } from '@angular/material/table';
+import { AddBlogComponent } from './add-blog/add-blog.component';
+import { UpdateBlogComponent } from './update-blog/update-blog.component';
+import { ShowBlogComponent } from './show-blog/show-blog.component';
+ 
+import { LoginuSERComponent } from './loginu-ser/loginu-ser.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -36,14 +45,23 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    BlogComponent,
+    AddBlogComponent,
+    UpdateBlogComponent,
+    ShowBlogComponent,
+ 
+    LoginuSERComponent,
+       RegisterComponent
     
 
 
   ],
   imports: [
+    MatTableModule,
     BrowserModule,
     AppRoutingModule,
+    MatIconModule,
     ExperienceModule,
     HttpClientModule,
     GestionEtudiantModule,
@@ -64,6 +82,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 
   ],
+  exports: [
+    MatTableModule],
   providers: [],
   bootstrap: [AppComponent],
 
